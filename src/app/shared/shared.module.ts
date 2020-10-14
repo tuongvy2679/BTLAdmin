@@ -9,6 +9,8 @@ import {DropdownModule} from 'primeng/dropdown';
 import {FileUploadModule} from 'primeng/fileupload';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { FileNotFoundComponent } from './file-not-found/file-not-found.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [UnauthorizedComponent, FileNotFoundComponent],
   imports: [
@@ -21,6 +23,7 @@ import { FileNotFoundComponent } from './file-not-found/file-not-found.component
     DropdownModule,
     FileUploadModule,
     ReactiveFormsModule,
+    NgbModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -31,7 +34,8 @@ import { FileNotFoundComponent } from './file-not-found/file-not-found.component
     CommonModule,
     CalendarModule,
     DropdownModule,
-    FileUploadModule   
+    FileUploadModule,
+    NgbModule 
   ],
 })
 export class SharedModule { }

@@ -4,8 +4,10 @@ import { FileUpload } from 'primeng/fileupload';
 import { ApiService } from '../lib/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Injector } from '@angular/core';
+
 export class BaseComponent {
    public genders: any;
+   public roles:any;
    public locale_vn:any;
    public today: any;
    public dateFormat: any;
@@ -15,11 +17,18 @@ export class BaseComponent {
    constructor(injector: Injector) { 
           this.today = new Date();
           this.dateFormat = "dd/mm/yy";
+
           this.genders =  [
             {label:'Nam',value:'Nam'},
             {label:'Nữ',value:'Nữ'},
             {label:'Khác',value:'Khác'}
           ];   
+
+          this.roles =  [
+            {label:'Admin',value:'Admin'},
+            {label:'User',value:'User'}
+          ];  
+          
           this.locale_vn={
             "firstDayOfWeek": 1,
             "dayNames": [

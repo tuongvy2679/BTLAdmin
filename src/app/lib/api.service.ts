@@ -7,17 +7,18 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ApiService {
   public host = environment.apiUrl;
   constructor(private _http: HttpClient, public router: Router) {}
 
   post(url: string, obj: any) {
     const body = JSON.stringify(obj);
-    let cloneHeader: any = {};
-    cloneHeader['Content-Type'] = 'application/json';
-    const headerOptions = new HttpHeaders(cloneHeader);
+    // let cloneHeader: any = {};
+    // cloneHeader['Content-Type'] = 'application/json';
+    // const headerOptions = new HttpHeaders(cloneHeader);
     return this._http
-      .post<any>(this.host + url, body, { headers: headerOptions })
+      .post<any>(this.host + url, body)
       .pipe(
         map(res => {
           return res;
@@ -26,11 +27,11 @@ export class ApiService {
   }
 
   get(url: string) {
-    let cloneHeader: any = {};
-    cloneHeader['Content-Type'] = 'application/json';
-    const headerOptions = new HttpHeaders(cloneHeader);
+    // let cloneHeader: any = {};
+    // cloneHeader['Content-Type'] = 'application/json';
+    // const headerOptions = new HttpHeaders(cloneHeader);
     return this._http
-      .get(this.host + url, { headers: headerOptions })
+      .get(this.host + url)
       .pipe(
         map(res  => {
           return res;

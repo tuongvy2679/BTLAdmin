@@ -24,9 +24,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/css/bootstrap.min.css",
-              "src/assets/font-awesome/4.2.0/css/font-awesome.min.css",      
-              "src/assets/fonts/fonts.googleapis.com.css",        
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/css/bootstrap.min.css",      
+              "src/assets/font-awesome/4.2.0/css/font-awesome.min.css",        
+              "src/assets/fonts/fonts.googleapis.com.css",
               "src/assets/css/ace.min.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
