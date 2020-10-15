@@ -124,7 +124,7 @@ export class UserComponent extends BaseComponent implements OnInit {
     this.user = null;
     this.formdata = this.fb.group({
       'hoten': ['', Validators.required],
-      'ngaysinh': [this.today, Validators.required],
+      'ngaysinh': [this.today, Validators.required], 
       'diachi': [''],
       'gioitinh': [this.genders[0].value, Validators.required],
       'email': ['', [Validators.required,Validators.email]],
