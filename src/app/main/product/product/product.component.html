@@ -41,20 +41,20 @@
           <th style="width: 70px; text-align: center;">STT</th>
           <th style="width: 15%; text-align: left;">Mã sản phẩm</th>
           <th style="width: 20%; text-align: left;">Tên sản phẩm</th>
-          <th style="text-align: left;">Ảnh</th>
+         
           <th style="text-align: left;">Giá</th>
           <th style="width: 130px; text-align: left;">Mô tả</th>
           <th style="width: 120px; text-align: left;">Tác vụ</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-item  let-i="rowIndex">
+      <ng-template pTemplate="body" *ngFor="let it of list_item">
         <tr>
-          <td style="width: 70px; text-align: center;">{{ i + 1 }}</td>
-          <td>{{ item.item_id}}</td>
-          <td>{{ item.item_name }}</td>
-          <td>{{ item.item_image }}</td>
-          <td>{{ item.item_price }}</td>
-          <td>{{ item.item_description }}</td>
+          <td style="width: 70px; text-align: center;"></td>
+          <td>{{ it.item_id}}</td>
+          <td>{{ it.item_name }}</td>
+        
+          <td>{{ it.item_price }}</td>
+          <td>{{ it.item_description }}</td>
           <td class="action-col" >
             <div class="btn-group">
               <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(item)">  
@@ -90,7 +90,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label no-padding-right"> Tên sản phẩm(<span style="color: red;">*</span>)</label>
             <div class="col-sm-5">
-              <input type="text" placeholder="Họ tên" formControlName="hoten"/>
+              <input type="text" placeholder="Họ tên" formControlName="item_name"/>
               <div *ngIf="submitted && f.item_name.errors" class="invalid-feedback">
                 <div *ngIf="f.item_name.errors.required">Họ tên là bắt buộc</div>
               </div>
@@ -109,42 +109,27 @@
            
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2 control-label no-padding-right"> Tài khoản(<span style="color: red;">*</span>)</label>
-            <div class="col-sm-4">
-              <input type="text" formControlName="taikhoan" placeholder="Tài khoản" />
-              <div *ngIf="submitted && f.taikhoan.errors" class="invalid-feedback">
-                <div *ngIf="f.taikhoan.errors.required">Tài khoản là bắt buộc</div>
-              </div>
-            </div>
-            <label class="col-sm-2 control-label no-padding-right"> Loại quyền(<span style="color: red;">*</span>)</label>
-            <div class="col-sm-4">
-              <p-dropdown [options]="roles" formControlName="role" [style]="{'width':'100%'}"></p-dropdown>
-              <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-                <div *ngIf="f.role.errors.required">Loại quyền là bắt buộc</div>
+            <label class="col-sm-2 control-label no-padding-right"> Giá(<span style="color: red;">*</span>)</label>
+            <div class="col-sm-5">
+              <input type="text" placeholder="Giá" formControlName="item_name"/>
+              <div *ngIf="submitted && f.item_price.errors" class="invalid-feedback">
+                <div *ngIf="f.item_price.errors.required">Họ tên là bắt buộc</div>
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label no-padding-right"> Mật khẩu(<span style="color: red;">*</span>)</label>
-            <div class="col-sm-4">
-              <input type="password" formControlName="matkhau" placeholder="Mật khẩu" />
-              <div *ngIf="submitted && f.matkhau.errors" class="invalid-feedback">
-                <div *ngIf="f.matkhau.errors.required">Mật khẩu là bắt buộc</div>
-                <div *ngIf="f.matkhau.errors.matkhau">Độ dài mật khẩu tối thiệu phải là 6 ký tự và phải chứa ký tự đặc biệt @#!$%&*</div>
-            </div>
-            </div>
-            <label class="col-sm-2 control-label no-padding-right"> Nhập lại mật khẩu(<span style="color: red;">*</span>)</label>
-            <div class="col-sm-4">
-              <input type="password" formControlName="nhaplaimatkhau" placeholder="Nhập lại mật khẩu" />
-              <div *ngIf="submitted && f.nhaplaimatkhau.errors" class="invalid-feedback">
-                <div *ngIf="f.nhaplaimatkhau.errors.required">Xác nhận lại mật khẩu là bắt buộc</div>
-                <div *ngIf="f.nhaplaimatkhau.errors.mustMatch">Xác thực lại mật khẩu không đúng</div>
-            </div>
-            </div>
 
-            
-          </div> 
+          <div class="form-group">
+            <label class="col-sm-2 control-label no-padding-right">Mô tả (<span style="color: red;">*</span>)</label>
+            <div class="col-sm-5">
+              <input type="text" placeholder="Giá" formControlName="item_name"/>
+              <div *ngIf="submitted && f.item_description.errors" class="invalid-feedback">
+                <div *ngIf="f.item_description.errors.required">Họ tên là bắt buộc</div>
+              </div>
+            </div>
+          </div>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-sm" (click)="Reset()">

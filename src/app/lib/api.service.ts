@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 
 export class ApiService {
   public host = environment.apiUrl;
-  constructor(private _http: HttpClient, public router: Router) {}
+  constructor(private _http: HttpClient, public router: Router) { }
 
   post(url: string, obj: any) {
     const body = JSON.stringify(obj);
@@ -23,19 +23,19 @@ export class ApiService {
         map(res => {
           return res;
         })
-      );      
+      );
   }
 
   get(url: string) {
-    // let cloneHeader: any = {};
-    // cloneHeader['Content-Type'] = 'application/json';
-    // const headerOptions = new HttpHeaders(cloneHeader);
+    let cloneHeader: any = {};
+    cloneHeader['Content-Type'] = 'application/json';
+    const headerOptions = new HttpHeaders(cloneHeader);
     return this._http
       .get(this.host + url)
       .pipe(
-        map(res  => {
+        map(res => {
           return res;
         })
-      );       
-  } 
+      );
+  }
 }

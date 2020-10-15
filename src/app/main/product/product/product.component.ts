@@ -4,6 +4,8 @@ import { FileUpload } from 'primeng/fileupload';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BaseComponent } from '../../../lib/base-component';
 import 'rxjs/add/operator/takeUntil';
+import { Observable } from 'rxjs';
+import 'rxjs/add/observable/combineLatest';
 declare var $: any;
 
 @Component({
@@ -13,6 +15,7 @@ declare var $: any;
 })
 export class ProductComponent extends BaseComponent implements OnInit {
   public items: any;
+  list_item: any;
   public item: any;
   public totalRecords: any;
   public pageSize = 3;
@@ -30,6 +33,14 @@ export class ProductComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    Observable.combineLatest(
+      this._api.get('/api/Item/get-all'),
+    ).takeUntil(this.unsubscribe).subscribe(res => {
+      this.list_item = res[0];
+      setTimeout(() => {
+        this.loadScripts();
+      });
+    }, err => { });
     this.formsearch = this.fb.group({
       'item_name': [''],
     });
@@ -47,20 +58,20 @@ export class ProductComponent extends BaseComponent implements OnInit {
   search() {
     this.page = 1;
     this.pageSize = 5;
-    this._api.post('/api/item/search', { page: this.page, pageSize: this.pageSize, hoten: this.formsearch.get('item_name').value }).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/item/search', { page: this.page, pageSize: this.pageSize, item_name: this.formsearch.get('item_name').value }).takeUntil(this.unsubscribe).subscribe(res => {
       this.items = res.data;
       this.totalRecords = res.totalItems;
       this.pageSize = res.pageSize;
     });
   }
 
-  pwdCheckValidator(control) {
-    var filteredStrings = { search: control.value, select: '@#!$%&*' }
-    var result = (filteredStrings.select.match(new RegExp('[' + filteredStrings.search + ']', 'g')) || []).join('');
-    if (control.value.length < 6 || !result) {
-      return { matkhau: true };
-    }
-  }
+  // pwdCheckValidator(control) {
+  //   var filteredStrings = { search: control.value, select: '@#!$%&*' }
+  //   var result = (filteredStrings.select.match(new RegExp('[' + filteredStrings.search + ']', 'g')) || []).join('');
+  //   if (control.value.length < 6 || !result) {
+  //     return { matkhau: true };
+  //   }
+  // }
 
   get f() { return this.formdata.controls; }
 
@@ -125,8 +136,8 @@ export class ProductComponent extends BaseComponent implements OnInit {
     setTimeout(() => {
       $('#createitemModal').modal('toggle');
       this.formdata = this.fb.group({
-        'item_name': ['', Validators.required],
-        'item_price': ['', Validators.required],
+        'item_name': [''],
+        'item_price': [''],
         'item_description': [''],
       });
 
@@ -143,10 +154,10 @@ export class ProductComponent extends BaseComponent implements OnInit {
       this._api.get('/api/item/get-by-id/' + row.item_id).takeUntil(this.unsubscribe).subscribe((res: any) => {
         this.item = res;
         this.formdata = this.fb.group({
-          'item_name': ['', Validators.required],
-          'item_price': ['', Validators.required],
+          'item_name': [''],
+          'item_price': [''],
           'item_description': [''],
-        },);
+        });
         this.doneSetupForm = true;
       });
     }, 700);
