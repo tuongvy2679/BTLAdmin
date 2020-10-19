@@ -32,3 +32,9 @@ import { HttpClientModule } from '@angular/common/http';
   ]
 })
 export class ProductModule { }
+
+export class EditorDemo {
+    
+  text: string;
+      
+}

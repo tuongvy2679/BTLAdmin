@@ -4,7 +4,7 @@
       <i class="ace-icon fa fa-home home-icon"></i>
       <a href="#">Trang chủ</a>
     </li>
-    <li class="active">Quản lý người dùng</li>
+    <li class="active">Quản lý sản phẩm</li>
   </ul>
   <div class="nav-search">
     <p class="pull-right no-margin">
@@ -35,7 +35,7 @@
         </div>
       </form> 
     </p-panel>
-    <p-table selectionMode="single" [value]="item" styleClass="p-datatable-gridlines">
+    <p-table selectionMode="single" [value]="items" styleClass="p-datatable-gridlines">
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 70px; text-align: center;">STT</th>
@@ -47,14 +47,15 @@
           <th style="width: 120px; text-align: left;">Tác vụ</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" *ngFor="let it of list_item">
+      <ng-template pTemplate="body" let-item  let-i="rowIndex">
+     
         <tr>
-          <td style="width: 70px; text-align: center;"></td>
-          <td>{{ it.item_id}}</td>
-          <td>{{ it.item_name }}</td>
+          <td style="width: 70px; text-align: center;">{{ i + 1 }}</td>
+          <td>{{ item.item_id}}</td>
+          <td>{{ item.item_name }}</td>
         
-          <td>{{ it.item_price }}</td>
-          <td>{{ it.item_description }}</td>
+          <td>{{ item.item_price }}</td>
+          <td>{{ item.item_description }}</td>
           <td class="action-col" >
             <div class="btn-group">
               <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(item)">  
@@ -78,7 +79,7 @@
 
 
 <!-- /.row -->
-<div *ngIf="showUpdateModal" id="createitemModal" class="modal fade" role="dialog">
+<div *ngIf="showUpdateModal" id="createItemModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg full-height-modal">
     <div class="modal-content">
       <div class="modal-header">
