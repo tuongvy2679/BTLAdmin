@@ -38,7 +38,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
 
   loadPage(page) {
     //debugger;
-    this._api.post('/api/items/search', { page: page, pageSize: this.pageSize }).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/items/search1', { page: page, pageSize: this.pageSize }).takeUntil(this.unsubscribe).subscribe(res => {
       this.items = res.data;
       this.totalRecords = res.totalItems;
       this.pageSize = res.pageSize;
@@ -49,7 +49,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
     debugger;
     this.page = 1;
     this.pageSize = 5;
-    this._api.post('/api/items/search', { page: this.page, pageSize: this.pageSize , item_name: this.formsearch.get('item_name').value }).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/items/search1', { page: this.page, pageSize: this.pageSize , item_name: this.formsearch.get('item_name').value }).takeUntil(this.unsubscribe).subscribe(res => {
       this.items = res.data;
       this.totalRecords = res.totalItems;
       this.pageSize = res.pageSize;
