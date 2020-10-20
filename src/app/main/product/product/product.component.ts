@@ -106,7 +106,6 @@ export class ProductComponent extends BaseComponent implements OnInit {
         });
       });
     }
-
   }
 
   onDelete(row) {
