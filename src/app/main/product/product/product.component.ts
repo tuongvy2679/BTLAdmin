@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BaseComponent } from '../../../lib/base-component';
 import 'rxjs/add/operator/takeUntil';
 declare var $: any;
+
 @Component({
   selector: 'app-product',
   templateUrl: '../product/product.component.html',
@@ -32,7 +33,6 @@ export class ProductComponent extends BaseComponent implements OnInit {
     this.formsearch = this.fb.group({
       'item_name': [''],
     });
-
     this.search();
   }
 
@@ -46,10 +46,10 @@ export class ProductComponent extends BaseComponent implements OnInit {
   }
 
   search() {
-    debugger;
+    // debugger;
     this.page = 1;
     this.pageSize = 5;
-    this._api.post('/api/items/search1', { page: this.page, pageSize: this.pageSize , item_name: this.formsearch.get('item_name').value }).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/items/search1', { page: this.page, pageSize: this.pageSize, item_name: this.formsearch.get('item_name').value }).takeUntil(this.unsubscribe).subscribe(res => {
       this.items = res.data;
       this.totalRecords = res.totalItems;
       this.pageSize = res.pageSize;
@@ -75,12 +75,11 @@ export class ProductComponent extends BaseComponent implements OnInit {
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
+          item_group_id: value.item_group_id,
           item_image: data_image,
-
           item_name: value.item_name,
-          item_price: value.item_price,
-          item_description: value.item_description
-
+          item_price: +value.item_price,
+          item_description: value.item_description,
         };
         this._api.post('/api/items/create-item', tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Thêm thành công');
@@ -92,10 +91,10 @@ export class ProductComponent extends BaseComponent implements OnInit {
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
+          item_group_id: value.item_group_id,
           item_image: data_image,
-
           item_name: value.item_name,
-          item_price: value.item_price,
+          item_price: +value.item_price,
           item_description: value.item_description,
           item_id: this.item.item_id,
         };
@@ -122,7 +121,6 @@ export class ProductComponent extends BaseComponent implements OnInit {
       'item_price': ['', Validators.required],
       'item_description': [''],
     }, {
-
     });
   }
 
@@ -138,14 +136,13 @@ export class ProductComponent extends BaseComponent implements OnInit {
         'item_price': ['', Validators.required],
         'item_description': [''],
       }, {
-
       });
-
       this.doneSetupForm = true;
     });
   }
 
   public openUpdateModal(row) {
+  
     this.doneSetupForm = false;
     this.showUpdateModal = true;
     this.isCreate = false;
@@ -154,11 +151,11 @@ export class ProductComponent extends BaseComponent implements OnInit {
       this._api.get('/api/items/get-by-id/' + row.item_id).takeUntil(this.unsubscribe).subscribe((res: any) => {
         this.item = res;
         this.formdata = this.fb.group({
-          'item_name': ['', Validators.required],
-          'item_price': ['', Validators.required],
-          'item_description': [''],
+          'data_image': [this.item.item_image, Validators.required],
+          'item_name': [this.item.item_name],
+          'item_price': [this.item.item_price, Validators.required],
+          'item_description': [this.item.item_description],
         }, {
-
         });
         this.doneSetupForm = true;
       });
