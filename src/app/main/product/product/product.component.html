@@ -116,7 +116,7 @@
             <div class="col-sm-5">
               <input type="text" placeholder="Giá" formControlName="item_price"/>
               <div *ngIf="submitted && f.item_price.errors" class="invalid-feedback">
-                <div *ngIf="f.item_price.errors.required">Họ tên là bắt buộc</div>
+                <div *ngIf="f.item_price.errors.required">Giá là bắt buộc</div>
               </div>
             </div>
           </div>
@@ -126,7 +126,7 @@
             <div class="col-sm-5">
               <input type="text" placeholder="Giá" formControlName="item_description"/>
               <div *ngIf="submitted && f.item_description.errors" class="invalid-feedback">
-                <div *ngIf="f.item_description.errors.required">Họ tên là bắt buộc</div>
+                <div *ngIf="f.item_description.errors.required">Mô tả là bắt buộc</div>
               </div>
             </div>
           </div>

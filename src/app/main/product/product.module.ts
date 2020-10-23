@@ -6,10 +6,11 @@ import { ProductComponent } from './product/product.component';
 import { TypeComponent } from './type/type.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
   declarations: [ 
-    OrderComponent,ProductComponent,TypeComponent
+    OrderComponent,ProductComponent,TypeComponent, NewsComponent
   ],
   imports: [
     CommonModule,

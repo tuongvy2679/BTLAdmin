@@ -11,6 +11,7 @@ import { Role } from '../models/role';
 import { SharedModule } from '../shared/shared.module';
 import { UnauthorizedComponent } from '../shared/unauthorized/unauthorized.component';
 import { FileNotFoundComponent } from '../shared/file-not-found/file-not-found.component';
+
 export const mainRoutes: Routes = [
   {
     path: '',
@@ -51,6 +52,7 @@ export const mainRoutes: Routes = [
     FooterComponent,
     NavbarComponent,
     MainComponent,
+
   ],
   imports: [SharedModule, CommonModule, RouterModule.forChild(mainRoutes)],
 })

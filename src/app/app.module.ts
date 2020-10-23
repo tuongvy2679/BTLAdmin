@@ -11,12 +11,14 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './lib/error.interceptor';
 import { JwtInterceptor } from './lib/jwt.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent    
+    LoginComponent,
+      
   ],
   imports: [
     SharedModule,
