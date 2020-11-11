@@ -39,11 +39,10 @@
         <ng-template pTemplate="header">
           <tr>
             <th style="width: 70px; text-align: center;">STT</th>
-            <th style="width: 15%; text-align: left;">Mã sản phẩm</th>
-            <th style="width: 20%; text-align: left;">Tên sản phẩm</th>
-           
-            <th style="text-align: left;">Giá</th>
-            <th style="width: 130px; text-align: left;">Mô tả</th>
+            <th style="width: 15%; text-align: left;">Mã tin tức</th>
+            <th style="width: 20%; text-align: left;">Ảnh tin tức</th>
+            <th style="width: 20%; text-align: left;">Tên tin tức</th>
+          
             <th style="width: 120px; text-align: left;">Tác vụ</th>
           </tr>
         </ng-template>
@@ -52,10 +51,8 @@
           <tr>
             <td style="width: 70px; text-align: center;">{{ i + 1 }}</td>
             <td>{{ new.tt_id}}</td>
+            <td><img style="width: 150px;" src="{{new.tt_image}}" alt=""></td>
             <td>{{ new.tt_name }}</td>
-          
-            <td>{{ new.tt_price }}</td>
-            <td>{{ new.tt_description }}</td>
             <td class="action-col" >
               <div class="btn-group">
                 <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(new)">  
@@ -79,7 +76,7 @@
   
   
   <!-- /.row -->
-  <div *ngIf="showUpdateModal" id="createNewsModal" class="modal fade" role="dialog">
+  <div *ngIf="showUpdateModal" id="createItemModal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg full-height-modal">
       <div class="modal-content">
         <div class="modal-header">

@@ -7,7 +7,7 @@ import 'rxjs/add/operator/takeUntil';
 declare var $: any;
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css'],
 })

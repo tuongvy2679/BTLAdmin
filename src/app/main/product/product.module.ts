@@ -27,6 +27,10 @@ import { EditorModule } from 'primeng/editor';
         component: ProductComponent,
       },
       {
+        path: 'news',
+        component: NewsComponent,
+      },
+      {
         path: 'type',
         component: TypeComponent,
       },
