@@ -1,6 +1,5 @@
-import { Component, Injector, OnInit, ViewChild  } from '@angular/core';
-
 import { MustMatch } from '../../../helpers/must-match.validator';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { FileUpload } from 'primeng/fileupload';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BaseComponent } from '../../../lib/base-component';
@@ -8,14 +7,13 @@ import 'rxjs/add/operator/takeUntil';
 declare var $: any;
 
 @Component({
-  selector: 'app-news',
+  selector: 'app-product',
   templateUrl: './news.component.html',
-  styleUrls: ['./news.component.css']
-  
+  styleUrls: ['./news.component.css'],
 })
-export class ProductComponent extends BaseComponent implements OnInit {
-  public news: any;
-  public new: any;
+export class NewsComponent extends BaseComponent implements OnInit {
+  public items: any;
+  public item: any;
   public totalRecords: any;
   public pageSize = 3;
   public page = 1;
@@ -41,8 +39,8 @@ export class ProductComponent extends BaseComponent implements OnInit {
   loadPage(page) {
     //debugger;
     this._api.post('/api/news/search1', { page: page, pageSize: this.pageSize }).takeUntil(this.unsubscribe).subscribe(res => {
-      this.news = res.data;
-      this.totalRecords = res.totalnews;
+      this.items = res.data;
+      this.totalRecords = res.totalItems;
       this.pageSize = res.pageSize;
     });
   }
@@ -52,8 +50,8 @@ export class ProductComponent extends BaseComponent implements OnInit {
     this.page = 1;
     this.pageSize = 5;
     this._api.post('/api/news/search1', { page: this.page, pageSize: this.pageSize, tt_name: this.formsearch.get('tt_name').value }).takeUntil(this.unsubscribe).subscribe(res => {
-      this.news = res.data;
-      this.totalRecords = res.totalnews;
+      this.items = res.data;
+      this.totalRecords = res.totalItems;
       this.pageSize = res.pageSize;
     });
   }
@@ -77,11 +75,12 @@ export class ProductComponent extends BaseComponent implements OnInit {
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
+          item_group_id: value.item_group_id,
           tt_image: data_image,
           tt_name: value.tt_name,
           tt_description: value.tt_description,
         };
-        this._api.post('/api/news/create-new', tmp).takeUntil(this.unsubscribe).subscribe(res => {
+        this._api.post('/api/news/create-news', tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Thêm thành công');
           this.search();
           this.closeModal();
@@ -94,9 +93,9 @@ export class ProductComponent extends BaseComponent implements OnInit {
           tt_image: data_image,
           tt_name: value.tt_name,
           tt_description: value.tt_description,
-          tt_id: this.new.tt_id,
+          tt_id: this.item.tt_id,
         };
-        this._api.post('/api/news/update-new', tmp).takeUntil(this.unsubscribe).subscribe(res => {
+        this._api.post('/api/news/update-news', tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Cập nhật thành công');
           this.search();
           this.closeModal();
@@ -106,16 +105,17 @@ export class ProductComponent extends BaseComponent implements OnInit {
   }
 
   onDelete(row) {
-    this._api.post('/api/news/delete-news', { new_id: row.new_id }).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/news/delete-news', { tt_id: row.tt_id }).takeUntil(this.unsubscribe).subscribe(res => {
       alert('Xóa thành công');
       this.search();
     });
   }
 
   Reset() {
-    this.new = null;
+    this.item = null;
     this.formdata = this.fb.group({
       'tt_name': ['', Validators.required],
+ 
       'tt_description': [''],
     }, {
     });
@@ -125,12 +125,12 @@ export class ProductComponent extends BaseComponent implements OnInit {
     this.doneSetupForm = false;
     this.showUpdateModal = true;
     this.isCreate = true;
-    this.new = null;
+    this.item = null;
     setTimeout(() => {
-      $('#createnewModal').modal('toggle');
+      $('#createItemModal').modal('toggle');
       this.formdata = this.fb.group({
         'tt_name': ['', Validators.required],
-        'tt_price': ['', Validators.required],
+   
         'tt_description': [''],
       }, {
       });
@@ -144,13 +144,15 @@ export class ProductComponent extends BaseComponent implements OnInit {
     this.showUpdateModal = true;
     this.isCreate = false;
     setTimeout(() => {
-      $('#createnewModal').modal('toggle');
-      this._api.get('/api/news/get-by-id/' + row.new_id).takeUntil(this.unsubscribe).subscribe((res: any) => {
-        this.new = res;
+      $('#createItemModal').modal('toggle');
+      this._api.get('/api/news/get_tintuc_new/' + row.tt_id).takeUntil(this.unsubscribe).subscribe((res: any) => {
+        this.item = res;
         this.formdata = this.fb.group({
-          'data_image': [this.new.tt_image, Validators.required],
-          'tt_name': [this.new.tt_name],
-          'tt_description': [this.new.tt_description],
+          'data_image': [this.item.tt_image, Validators.required],
+          'tt_image': [this.item.tt_image, Validators.required],
+          'tt_name': [this.item.tt_name],
+ 
+          'tt_description': [this.item.tt_description],
         }, {
         });
         this.doneSetupForm = true;
@@ -159,6 +161,6 @@ export class ProductComponent extends BaseComponent implements OnInit {
   }
 
   closeModal() {
-    $('#createnewModal').closest('.modal').modal('hide');
+    $('#createItemModal').closest('.modal').modal('hide');
   }
 }

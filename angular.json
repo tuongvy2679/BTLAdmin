@@ -25,20 +25,20 @@
             ],
             "styles": [
               "src/assets/css/bootstrap.min.css",
-              "src/assets/font-awesome/4.2.0/css/font-awesome.min.css",      
-              "src/assets/fonts/fonts.googleapis.com.css",        
+              "src/assets/font-awesome/4.2.0/css/font-awesome.min.css",
+              "src/assets/fonts/fonts.googleapis.com.css",
               "src/assets/css/ace.min.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
-              "src/styles.css"      
+              "src/styles.css"
             ],
             "scripts": [
               "src/assets/js/jquery.2.1.1.min.js",
               "src/assets/js/bootstrap.min.js",
-              "src/assets/js/ace-elements.min.js", 
+              "src/assets/js/ace-elements.min.js",
               "src/assets/js/ace-extra.min.js",
-              "src/assets/js/ace.min.js"                       
+              "src/assets/js/ace.min.js"
             ]
           },
           "configurations": {
@@ -101,9 +101,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.snow.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/quill/dist/quill.js"
+            ]
           }
         },
         "lint": {

@@ -7,13 +7,14 @@ import { TypeComponent } from './type/type.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NewsComponent } from './news/news.component';
-
+import { EditorModule } from 'primeng/editor';
 @NgModule({
-  declarations: [ 
-    OrderComponent,ProductComponent,TypeComponent, NewsComponent
+  declarations: [
+    OrderComponent, ProductComponent, TypeComponent, NewsComponent
   ],
   imports: [
     CommonModule,
+    EditorModule,
     SharedModule,
     HttpClientModule,
     RouterModule.forChild([
@@ -29,13 +30,8 @@ import { NewsComponent } from './news/news.component';
         path: 'type',
         component: TypeComponent,
       },
-  ]),  
+    ]),
   ]
 })
 export class ProductModule { }
 
-export class EditorDemo {
-    
-  text: string;
-      
-}

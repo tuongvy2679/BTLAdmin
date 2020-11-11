@@ -8,10 +8,11 @@ declare var $: any;
 
 @Component({
   selector: 'app-product',
-  templateUrl: '../product/product.component.html',
-  styleUrls: ['../product/product.component.css'],
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.css'],
 })
 export class ProductComponent extends BaseComponent implements OnInit {
+  text: string;
   public items: any;
   public item: any;
   public totalRecords: any;
@@ -142,7 +143,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
   }
 
   public openUpdateModal(row) {
-  
+
     this.doneSetupForm = false;
     this.showUpdateModal = true;
     this.isCreate = false;
@@ -152,6 +153,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
         this.item = res;
         this.formdata = this.fb.group({
           'data_image': [this.item.item_image, Validators.required],
+          'item_image': [this.item.item_image, Validators.required],
           'item_name': [this.item.item_name],
           'item_price': [this.item.item_price, Validators.required],
           'item_description': [this.item.item_description],
