@@ -42,7 +42,7 @@
             <th style="width: 15%; text-align: left;">Mã tin tức</th>
             <th style="width: 20%; text-align: left;">Ảnh tin tức</th>
             <th style="width: 20%; text-align: left;">Tên tin tức</th>
-          
+            <th style="width: 20%; text-align: left;">Thời gian đăng bài</th>
             <th style="width: 120px; text-align: left;">Tác vụ</th>
           </tr>
         </ng-template>
@@ -53,6 +53,7 @@
             <td>{{ new.tt_id}}</td>
             <td><img style="width: 150px;" src="{{new.tt_image}}" alt=""></td>
             <td>{{ new.tt_name }}</td>
+            <td>26-07-2020</td>
             <td class="action-col" >
               <div class="btn-group">
                 <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(new)">  
