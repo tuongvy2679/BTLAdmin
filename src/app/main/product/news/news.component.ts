@@ -12,6 +12,7 @@ declare var $: any;
   styleUrls: ['./news.component.css'],
 })
 export class NewsComponent extends BaseComponent implements OnInit {
+  text: string;
   public items: any;
   public item: any;
   public totalRecords: any;

@@ -4,7 +4,7 @@
         <i class="ace-icon fa fa-home home-icon"></i>
         <a href="#">Trang chủ</a>
       </li>
-      <li class="active">Quản lý sản phẩm</li>
+      <li class="active">Quản lý tin tức</li>
     </ul>
     <div class="nav-search">
       <p class="pull-right no-margin">
@@ -81,13 +81,13 @@
     <div class="modal-dialog modal-lg full-height-modal">
       <div class="modal-content">
         <div class="modal-header">
-          <h4  *ngIf="isCreate" class="modal-title">Nhập thông tin sản phẩm</h4>
-          <h4 *ngIf="!isCreate" class="modal-title">Sửa thông tin sản phẩm</h4>
+          <h4  *ngIf="isCreate" class="modal-title">Nhập thông tin tin tức</h4>
+          <h4 *ngIf="!isCreate" class="modal-title">Sửa thông tin tin tức</h4>
         </div>
         <form *ngIf="doneSetupForm" [formGroup]="formdata"  (ngSubmit)="onSubmit(formdata.value)" class="form-horizontal utehy-form">
           <div class="modal-body no-padding">
             <div class="form-group">
-              <label class="col-sm-2 control-label no-padding-right"> Tên sản phẩm(<span style="color: red;">*</span>)</label>
+              <label class="col-sm-2 control-label no-padding-right"> Tên tin tức(<span style="color: red;">*</span>)</label>
               <div class="col-sm-5">
                 <input type="text" placeholder="Họ tên" formControlName="tt_name"/>
                 <div *ngIf="submitted && f.tt_name.errors" class="invalid-feedback">
@@ -111,13 +111,15 @@
   
        
             <div class="form-group">
-              <label class="col-sm-2 control-label no-padding-right">Mô tả (<span style="color: red;">*</span>)</label>
-              <div class="col-sm-5">
-                <input type="text" placeholder="Giá" formControlName="tt_description"/>
-                <div *ngIf="submitted && f.tt_description.errors" class="invalid-feedback">
-                  <div *ngIf="f.tt_description.errors.required">Mô tả là bắt buộc</div>
+              <p class="col-sm-2 control-label no-padding-right">Mô tả</p><br><br>
+              <!-- <label class="col-sm-2 control-label no-padding-right">Mô tả (<span style="color: red;">*</span>)</label> -->
+              <!-- <div class="col-sm-5">
+                <input type="text" placeholder="Giá" formControlName="item_description"/>
+                <div *ngIf="submitted && f.item_description.errors" class="invalid-feedback">
+                  <div *ngIf="f.item_description.errors.required">Mô tả là bắt buộc</div>
                 </div>
-              </div>
+              </div> -->
+              <p-editor  formControlName="tt_description" [style]="{'height':'320px'}"></p-editor>
             </div>
           
         </div>
