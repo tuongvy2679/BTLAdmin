@@ -4,7 +4,7 @@
       <i class="ace-icon fa fa-home home-icon"></i>
       <a href="#">Trang chủ</a>
     </li>
-    <li class="active">Quản lý sản phẩm</li>
+    <li class="active">Quản lý đơn hàng</li>
   </ul>
   <div class="nav-search">
     <p class="pull-right no-margin">
@@ -25,9 +25,9 @@
     <p-panel header="Tìm kiếm" [style]="{'margin-top': '2px'}">
       <form class="form-horizontal" role="form" [formGroup]="formsearch"  (ngSubmit)="search()">
         <div class="form-group">
-          <label class="col-sm-1 control-label no-padding-right"> Họ tên</label>
+          <label class="col-sm-1 control-label no-padding-right"></label>
           <div class="col-sm-11">
-            <input formControlName="tt_name"  type="text" placeholder="Họ tên" style="width: 100%;" />
+            <input formControlName="tt_name"  type="text" placeholder="" style="width: 100%;" />
           </div>
         </div>
         <div class="form-group">
@@ -45,7 +45,7 @@
           <th style="width: 15%; text-align: left;">Mã hóa đơn</th>
           <th style="width: 20%; text-align: left;">Họ tên khách hàng</th>
           <th style="width: 20%; text-align: left;">Địa chỉ khách hàng</th>
-          <th style="width: 120px; text-align: left;">Tác vụ</th>
+          <!-- <th style="width: 120px; text-align: left;">Tác vụ</th> -->
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-new  let-i="rowIndex">
@@ -63,12 +63,12 @@
               <button title="" class="btn btn-xs btn-white btn-default" (click)="onDelete(new)">
                 <i class="ace-icon fa fa-trash"></i>
               </button> -->
-              <button title="" class="btn btn-xs btn-white btn-default"   >  
+              <!-- <button title="" class="btn btn-xs btn-white btn-default"   >  
                 <i class="ace-icon fa fa-edit"></i>
               </button>
               <button title="" class="btn btn-xs btn-white btn-default" >
                 <i class="ace-icon fa fa-trash"></i>
-              </button>
+              </button> -->
             </div>  
           </td>
         </tr>

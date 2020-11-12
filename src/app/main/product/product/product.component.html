@@ -22,9 +22,9 @@
     <p-panel header="Tìm kiếm" [style]="{'margin-top': '2px'}">
       <form class="form-horizontal" role="form" [formGroup]="formsearch"  (ngSubmit)="search()">
         <div class="form-group">
-          <label class="col-sm-1 control-label no-padding-right"> Họ tên</label>
+          <label class="col-sm-1 control-label no-padding-right">Tên sản phẩm</label>
           <div class="col-sm-11">
-            <input formControlName="item_name"  type="text" placeholder="Họ tên" style="width: 100%;" />
+            <input formControlName="item_name"  type="text" placeholder="Tên sản phẩm" style="width: 100%;" />
           </div>
         </div>
         <div class="form-group">
@@ -93,16 +93,16 @@
           <div class="form-group">
             <label class="col-sm-2 control-label no-padding-right"> Tên sản phẩm(<span style="color: red;">*</span>)</label>
             <div class="col-sm-5">
-              <input type="text" placeholder="Họ tên" formControlName="item_name"/>
+              <input type="text" placeholder="tên sản phẩm" formControlName="item_name"/>
               <div *ngIf="submitted && f.item_name.errors" class="invalid-feedback">
-                <div *ngIf="f.item_name.errors.required">Họ tên là bắt buộc</div>
+                <div *ngIf="f.item_name.errors.required">Tên sản phẩm là bắt buộc</div>
               </div>
             </div>
             
           </div>
           
           <div class="form-group">
-            <label class="col-sm-2 control-label no-padding-right"> Ảnh đại diện</label>
+            <label class="col-sm-2 control-label no-padding-right"> Ảnh sản phẩm</label>
             <div class="col-sm-10">
               <p-fileUpload #file_image mode="advanced" [showUploadButton]="false" cancelLabel="Hủy" chooseLabel ="Chọn ảnh"   multiple="false" accept="image/*" maxFileSize="1000000">
                   <ng-template pTemplate="content">
