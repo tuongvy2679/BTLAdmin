@@ -46,8 +46,8 @@ export class NewsComponent extends BaseComponent implements OnInit {
     });
   }
 
-  search() {
-    // debugger;
+  search(){
+    //debugger;
     this.page = 1;
     this.pageSize = 5;
     this._api.post('/api/news/search1', { page: this.page, pageSize: this.pageSize, tt_name: this.formsearch.get('tt_name').value }).takeUntil(this.unsubscribe).subscribe(res => {
@@ -116,7 +116,7 @@ export class NewsComponent extends BaseComponent implements OnInit {
     this.item = null;
     this.formdata = this.fb.group({
       'tt_name': ['', Validators.required],
- 
+
       'tt_description': [''],
     }, {
     });
@@ -131,7 +131,6 @@ export class NewsComponent extends BaseComponent implements OnInit {
       $('#createItemModal').modal('toggle');
       this.formdata = this.fb.group({
         'tt_name': ['', Validators.required],
-   
         'tt_description': [''],
       }, {
       });
@@ -140,7 +139,6 @@ export class NewsComponent extends BaseComponent implements OnInit {
   }
 
   public openUpdateModal(row) {
-  
     this.doneSetupForm = false;
     this.showUpdateModal = true;
     this.isCreate = false;
@@ -152,7 +150,6 @@ export class NewsComponent extends BaseComponent implements OnInit {
           'data_image': [this.item.tt_image, Validators.required],
           'tt_image': [this.item.tt_image, Validators.required],
           'tt_name': [this.item.tt_name],
- 
           'tt_description': [this.item.tt_description],
         }, {
         });
